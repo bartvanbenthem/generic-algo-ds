@@ -1,9 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+const size = 50_000_000
 
 type Ordered interface {
 	~float64 | ~int | ~string
+}
+
+func IsSorted[T Ordered](data []T) bool {
+	for i := 1; i < len(data); i++ {
+		if data[i] < data[i-1] {
+			return false
+		}
+	}
+	return true
 }
 
 func quicksort[T Ordered](data []T, low, high int) {
@@ -38,16 +53,15 @@ func partition[T Ordered](data []T, low, high int) int {
 
 func main() {
 
-	numbers := []int{99, 55, 3, 4, 5, 111, 2, 1, 65, 88}
-	numbers2 := []float64{3.5, -2.4, 12.8, 9.1}
-	names := []string{"Zachary", "John", "Moe", "Jim", "Robert"}
+	data := make([]float64, size)
+	for i := 0; i < size; i++ {
+		data[i] = 100.0 * rand.Float64()
+	}
 
-	quicksort[int](numbers, 0, len(numbers)-1)
-	fmt.Println(numbers)
+	start := time.Now()
+	quicksort[float64](data, 0, len(data)-1)
+	elapsed := time.Since(start)
+	fmt.Println("Elapsed time for concurrent quicksort = ", elapsed)
+	fmt.Println("Is sorted: ", IsSorted(data))
 
-	quicksort[float64](numbers2, 0, len(numbers2)-1)
-	fmt.Println(numbers2)
-
-	quicksort[string](names, 0, len(names)-1)
-	fmt.Println(names)
 }

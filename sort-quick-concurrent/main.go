@@ -14,6 +14,15 @@ type Ordered interface {
 	~float64 | ~int | ~string
 }
 
+func IsSorted[T Ordered](data []T) bool {
+	for i := 1; i < len(data); i++ {
+		if data[i] < data[i-1] {
+			return false
+		}
+	}
+	return true
+}
+
 // CONCURRENT QUICKSORT
 func InsertSort[T Ordered](data []T) {
 	i := 1
@@ -44,15 +53,6 @@ func Partition[T Ordered](data []T) int {
 	}
 	data[0], data[mid] = data[mid], data[0]
 	return mid
-}
-
-func IsSorted[T Ordered](data []T) bool {
-	for i := 1; i < len(data); i++ {
-		if data[i] < data[i-1] {
-			return false
-		}
-	}
-	return true
 }
 
 func ConcurrentQuicksort[T Ordered](data []T, wg *sync.WaitGroup) {
