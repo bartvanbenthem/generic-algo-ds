@@ -68,7 +68,7 @@ func MergeSort[T Ordered](data []T) []T {
 		middle := len(data) / 2
 		left := data[:middle]
 		right := data[middle:]
-		data = Merge(MergeSort(right), MergeSort(left))
+		data = Merge(MergeSort(left), MergeSort(right))
 	} else {
 		InsertSort(data)
 	}
