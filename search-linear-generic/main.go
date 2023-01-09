@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const size = 100_000_000
+const size = 500_000_000
 
 type Ordered interface {
 	~float64 | ~int | ~string

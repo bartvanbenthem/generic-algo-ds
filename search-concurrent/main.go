@@ -11,7 +11,7 @@ type Ordered interface {
 	~float64 | ~int | ~string
 }
 
-const size = 100_000_000
+const size = 500_000_000
 
 func searchSegment[T Ordered](slice []T, target T, a, b int, ch chan<- bool) {
 	// Generates boolean value put into ch
