@@ -8,11 +8,11 @@ import (
 
 const size = 50_000_000
 
-type Ordered interface {
+type DataType interface {
 	~float64 | ~int | ~string
 }
 
-func IsSorted[T Ordered](data []T) bool {
+func IsSorted[T DataType](data []T) bool {
 	for i := 1; i < len(data); i++ {
 		if data[i] < data[i-1] {
 			return false
@@ -21,7 +21,7 @@ func IsSorted[T Ordered](data []T) bool {
 	return true
 }
 
-func quicksort[T Ordered](data []T, low, high int) {
+func quicksort[T DataType](data []T, low, high int) {
 	if low < high {
 		var pivot = partition(data, low, high)
 		quicksort(data, low, pivot)
@@ -29,7 +29,7 @@ func quicksort[T Ordered](data []T, low, high int) {
 	}
 }
 
-func partition[T Ordered](data []T, low, high int) int {
+func partition[T DataType](data []T, low, high int) int {
 	// Pick a lowest bound element as a pivot value
 	var pivot = data[low]
 	var i = low

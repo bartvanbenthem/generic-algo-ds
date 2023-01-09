@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-type Ordered interface {
+type DataType interface {
 	~float64 | ~int | ~string
 }
 
-func bubblesort[T Ordered](data []T) {
+func bubblesort[T DataType](data []T) {
 	n := len(data)
 	for i := 0; i < n-1; i++ {
 		for j := 0; j < n-1-i; j++ {

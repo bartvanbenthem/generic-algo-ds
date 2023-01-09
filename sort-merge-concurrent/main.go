@@ -11,11 +11,11 @@ import (
 const size = 50_000_000
 const max = 5000
 
-type Ordered interface {
+type DataType interface {
 	~float64 | ~int | ~string
 }
 
-func IsSorted[T Ordered](data []T) bool {
+func IsSorted[T DataType](data []T) bool {
 	for i := 1; i < len(data); i++ {
 		if data[i] < data[i-1] {
 			return false
@@ -24,7 +24,7 @@ func IsSorted[T Ordered](data []T) bool {
 	return true
 }
 
-func InsertSort[T Ordered](data []T) {
+func InsertSort[T DataType](data []T) {
 	i := 1
 	for i < len(data) {
 		h := data[i]
@@ -37,7 +37,7 @@ func InsertSort[T Ordered](data []T) {
 		i += 1
 	}
 }
-func Merge[T Ordered](left, right []T) []T {
+func Merge[T DataType](left, right []T) []T {
 	result := make([]T, len(left)+len(right))
 	i, j, k := 0, 0, 0
 
@@ -63,7 +63,7 @@ func Merge[T Ordered](left, right []T) []T {
 	}
 	return result
 }
-func MergeSort[T Ordered](data []T) []T {
+func MergeSort[T DataType](data []T) []T {
 	if len(data) > 100 {
 		middle := len(data) / 2
 		left := data[:middle]
@@ -75,7 +75,7 @@ func MergeSort[T Ordered](data []T) []T {
 	return data
 }
 
-func ConcurrentMergeSort[T Ordered](data []T) []T {
+func ConcurrentMergeSort[T DataType](data []T) []T {
 	if len(data) > 1 {
 		if len(data) <= max {
 			return MergeSort(data)

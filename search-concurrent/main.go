@@ -7,13 +7,13 @@ import (
 	"time"
 )
 
-type Ordered interface {
+type DataType interface {
 	~float64 | ~int | ~string
 }
 
 const size = 500_000_000
 
-func searchSegment[T Ordered](slice []T, target T, a, b int, ch chan<- bool) {
+func searchSegment[T DataType](slice []T, target T, a, b int, ch chan<- bool) {
 	// Generates boolean value put into ch
 	for i := a; i < b; i++ {
 		if slice[i] == target {
@@ -23,7 +23,7 @@ func searchSegment[T Ordered](slice []T, target T, a, b int, ch chan<- bool) {
 	ch <- false
 }
 
-func concurrentSearch[T Ordered](data []T, target T) bool {
+func concurrentSearch[T DataType](data []T, target T) bool {
 	ch := make(chan bool)
 	numSegments := runtime.NumCPU()
 	segmentSize := int(float64(len(data)) / float64(numSegments))

@@ -7,11 +7,11 @@ import (
 
 const size = 500_000_000
 
-type Ordered interface {
+type DataType interface {
 	~float64 | ~int | ~string
 }
 
-func binarySearch[T Ordered](slice []T, target T) bool {
+func binarySearch[T DataType](slice []T, target T) bool {
 	low := 0
 	high := len(slice) - 1
 	for low <= high {

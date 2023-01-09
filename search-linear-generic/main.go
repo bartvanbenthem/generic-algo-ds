@@ -8,11 +8,11 @@ import (
 
 const size = 500_000_000
 
-type Ordered interface {
+type DataType interface {
 	~float64 | ~int | ~string
 }
 
-func linearSearch[T Ordered](slice []T, target T) bool {
+func linearSearch[T DataType](slice []T, target T) bool {
 	// Return true if T is in the slice
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == target {

@@ -10,11 +10,11 @@ import (
 const size = 50_000_000
 const threshold = 5000
 
-type Ordered interface {
+type DataType interface {
 	~float64 | ~int | ~string
 }
 
-func IsSorted[T Ordered](data []T) bool {
+func IsSorted[T DataType](data []T) bool {
 	for i := 1; i < len(data); i++ {
 		if data[i] < data[i-1] {
 			return false
@@ -24,7 +24,7 @@ func IsSorted[T Ordered](data []T) bool {
 }
 
 // CONCURRENT QUICKSORT
-func InsertSort[T Ordered](data []T) {
+func InsertSort[T DataType](data []T) {
 	i := 1
 	for i < len(data) {
 		h := data[i]
@@ -39,7 +39,7 @@ func InsertSort[T Ordered](data []T) {
 	}
 }
 
-func Partition[T Ordered](data []T) int {
+func Partition[T DataType](data []T) int {
 	data[len(data)/2], data[0] = data[0], data[len(data)/2]
 	pivot := data[0]
 	mid := 0
@@ -55,7 +55,7 @@ func Partition[T Ordered](data []T) int {
 	return mid
 }
 
-func ConcurrentQuicksort[T Ordered](data []T, wg *sync.WaitGroup) {
+func ConcurrentQuicksort[T DataType](data []T, wg *sync.WaitGroup) {
 	for len(data) >= 30 {
 		mid := Partition(data)
 		var portion []T
@@ -80,7 +80,7 @@ func ConcurrentQuicksort[T Ordered](data []T, wg *sync.WaitGroup) {
 	InsertSort(data)
 }
 
-func QSort[T Ordered](data []T) {
+func QSort[T DataType](data []T) {
 	var wg sync.WaitGroup
 	ConcurrentQuicksort(data, &wg)
 	wg.Wait()
