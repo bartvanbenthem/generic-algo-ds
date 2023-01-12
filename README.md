@@ -1,5 +1,5 @@
 # Generic non-sequential algorithms
-A collection of generic non-sequential algorithms in Go
+A collection of generic & non-sequential algorithms in Go
 
 ## Big O Cheat Sheet:
 
