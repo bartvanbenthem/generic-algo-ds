@@ -1,5 +1,5 @@
-# Generic non-sequential algorithms & datastructures
-Generic non-sequential algorithms & datastructures in Go
+# Generic non-sequential algorithms
+Generic non-sequential algorithms in Go
 
 ## Big O Cheat Sheet:
 
