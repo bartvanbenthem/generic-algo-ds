@@ -20,6 +20,7 @@ func IsSorted[T DataType](data []T) bool {
 	}
 	return true
 }
+
 func InsertSort[T DataType](data []T) {
 	i := 1
 	for i < len(data) {
@@ -60,6 +61,7 @@ func Merge[T DataType](left, right []T) []T {
 	}
 	return result
 }
+
 func MergeSort[T DataType](data []T) []T {
 	if len(data) > 100 {
 		middle := len(data) / 2

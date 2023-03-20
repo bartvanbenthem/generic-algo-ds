@@ -21,6 +21,7 @@ func linearSearch[T DataType](slice []T, target T) bool {
 	}
 	return false
 }
+
 func main() {
 	data := make([]float64, size)
 	for i := 0; i < size; i++ {

@@ -37,6 +37,7 @@ func InsertSort[T DataType](data []T) {
 		i += 1
 	}
 }
+
 func Merge[T DataType](left, right []T) []T {
 	result := make([]T, len(left)+len(right))
 	i, j, k := 0, 0, 0
